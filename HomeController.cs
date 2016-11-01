@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using FinalProject.Models;
 
 namespace FinalProject.Controllers
 {
@@ -10,21 +11,37 @@ namespace FinalProject.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
-        public IActionResult About()
+        [HttpPost]
+        public IActionResult NoteSubmit0(string notetext, int quiznumber)
         {
-            ViewData["Message"] = "Your application description page.";
+            var QuizNote = new QuizNote();
 
-            return View();
+            QuizNote.NoteText = notetext;
+            QuizNote.QuizNumber = 0;
+            GlobalVariables.QuizNotes.Add(QuizNote);
+
+            return View("NoteSubmit");
         }
 
-        public IActionResult Contact()
+        [HttpPost]
+         public IActionResult NoteSubmit1(string notetext, int quiznumber)
         {
-            ViewData["Message"] = "Your contact page.";
+            var QuizNote = new QuizNote();
 
-            return View();
+            QuizNote.NoteText = notetext;
+            QuizNote.QuizNumber = 1;
+            GlobalVariables.QuizNotes.Add(QuizNote);
+
+            return View("NoteSubmit");
+        }
+        
+        [HttpPost]
+        public IActionResult Print()
+        {
+            return View("Index");
         }
 
         public IActionResult Error()

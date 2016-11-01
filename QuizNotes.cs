@@ -1,41 +1,24 @@
 using System.Collections.Generic;
 using System;
 
-namespace HW3Site.Models
+namespace FinalProject.Models
 {
   public class QuizNote
   {
-    
        public string NoteText {get; set;} //the text of the quiz note
-       public List<Answer> Answers;
-    
+   
+       public int QuizNumber {get; set;}
+       public string Name {get; set;}
 
-    public static Question[] Initial()
-    {
-       Question[] QArray = new Question[3];
-
-        
-
-           return QArray;
-            }
+        public static List<QuizNote> GetAll() 
+          {
+            return GlobalVariables.QuizNotes;
+          }
 
   }
-
-   public class Answer 
-        {
-            //Values
-           public string AnswerText {get; set;}
-           public bool IsCorrect {get; set;}//each Answer has a bool value, either right or wrong
-        }
-
-
-  
   
 
-  // public static List<Questions> GetAll() //don't know if i need this
-  //   {
-  //     return GlobalVariables.Questions;
-  //   }
+ 
 
 }
 
