@@ -11,31 +11,17 @@ namespace FinalProject.Controllers
     {
         public IActionResult Index()
         {
-            return View("Index");
+            // List<QuizNote> list =  Models.QuizNote.GetAll;
+            return View("Index", Models.QuizNote.GetAll());
         }
 
         [HttpPost]
-        public IActionResult NoteSubmit0(string notetext, int quiznumber)
+         public IActionResult NoteSubmit(string notetext, string name, int num)
         {
-            var QuizNote = new QuizNote();
+            Models.QuizNote.NoteSubmit(notetext, name, num);
 
-            QuizNote.NoteText = notetext;
-            QuizNote.QuizNumber = 0;
-            GlobalVariables.QuizNotes.Add(QuizNote);
-
-            return View("NoteSubmit");
-        }
-
-        [HttpPost]
-         public IActionResult NoteSubmit1(string notetext, int quiznumber)
-        {
-            var QuizNote = new QuizNote();
-
-            QuizNote.NoteText = notetext;
-            QuizNote.QuizNumber = 1;
-            GlobalVariables.QuizNotes.Add(QuizNote);
-
-            return View("NoteSubmit");
+            return RedirectToAction("Index"); //View("NoteSubmit");
+            //RedirectToAction("NoteSubmit");
         }
         
         [HttpPost]

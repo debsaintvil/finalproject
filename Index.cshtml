@@ -2,10 +2,10 @@
     ViewData["Title"] = "CS50 Cheatsheets";
 
     <div>
-        <img src="\images\cheatsheets.png" alt="CS50 Cheatsheets" height="150" width="2000">
+        <img src="\images\cheatsheets.png" alt="CS50 Cheatsheets" height="100" width="2000">
     </div>
 
-    <h3> Study and help your peers by uploading the most important and useful notes for each CS50 quiz! </h3>
+    <h4> Study and help your peers by uploading the most important and useful notes for each CS50 quiz! </h4>
 
     <div>
     <h2> QUIZ 0 </h2>
@@ -16,13 +16,12 @@
     @model List<FinalProject.Models.QuizNote>
     <div>
     
-        <form asp-action="NoteSubmit0" class="form-inline mbm" method="POST">
-           Name: <input type="text" name="name"><br>
-  
-
-<br>
-<textarea rows="4" cols="50" name="comment" form="usrform">
-Enter text here...</textarea>
+        <form asp-action="NoteSubmit" class="form-inline mbm" method="POST">
+           <input type="hidden" name="num" value=0>
+           Name: <input type="text" name="name" placeholder="Your Name Here"><br>
+            <br>
+            <textarea rows="4" cols="50" name="notetext" placeholder="Enter quiz notes here..."></textarea>
+            <br>
             <input class="btn" type="submit" value="Submit Quiz Note" />
         </form>
 
@@ -32,10 +31,7 @@ Enter text here...</textarea>
         (ALL SUGGESTED QUIZ0NOTES WILL BE LOOPED DOWN HERE)
         <form asp-action="Print" class="form-inline mbm" method="POST">
         
-          @foreach(var note in Model)
-                {
-                    <input type="checkbox" name="vehicle" value="">@Model.NoteText <br>    
-                }
+       
                 <br>
         </form>
     </div>
@@ -48,13 +44,12 @@ Enter text here...</textarea>
     
     <div>
     
-        <form asp-action="NoteSubmit1" class="form-inline mbm" method="POST">
-           Name: <input type="text" name="name"><br>
-  
-
-<br>
-<textarea rows="4" cols="50" name="comment" form="usrform">
-Enter text here...</textarea>
+        <form asp-action="NoteSubmit" class="form-inline mbm" method="POST">
+            <input type="hidden" name="num" value=1>
+           Name: <input type="text" name="name" placeholder="Your Name Here"><br>
+            <br>
+            <textarea rows="4" cols="50" name="notetext" placeholder="Enter quiz notes here..."></textarea>
+            <br>
             <input class="btn" type="submit" value="Submit Quiz Note" />
         </form>
 
@@ -62,6 +57,26 @@ Enter text here...</textarea>
 
     <div>
         (ALL SUGGESTED QUIZ1NOTES WILL BE LOOPED DOWN HERE)
+
+    <form asp-action="Print" class="form-inline mbm" method="POST">
+
+        <!--@for(int x= 0; x < Model.Count; x++)
+        {
+            if(Model[x].QuizNumber == 1)
+            {  
+                <label> <input type="radio" name="notetext" value= @Model[x].NoteText> @Model[x].NoteText  </label> <br> 
+                <label> <input type="radio" name="notetext" value= ""> @Model[x].Name </label> <br>
+            }
+            
+        }-->
+       @foreach (var item in Model) 
+            {
+                    @item.Name
+                    @item.QuizNumber 
+                    <br>
+                    @item.NoteText
+            }
+    </form>
     </div>
 
 
